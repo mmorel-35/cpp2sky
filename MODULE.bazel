@@ -10,7 +10,7 @@ bazel_dep(name = "cpp-httplib", version = "0.22.0", repo_name = "com_github_http
 bazel_dep(name = "protobuf", version = "32.0", repo_name = "com_google_protobuf")
 bazel_dep(name = "rules_cc", version = "0.2.2")
 bazel_dep(name = "rules_proto", version = "7.1.0")
-bazel_dep(name = "skywalking-data-collect-protocol", version = "9.7.0", repo_name = "skywalking_data_collect_protocol")
+bazel_dep(name = "skywalking-data-collect-protocol", repo_name = "skywalking_data_collect_protocol")
 git_override(
     module_name = "skywalking-data-collect-protocol",
     commit = "fb3fb005650e2489164978b7804117c7ade1529a",
