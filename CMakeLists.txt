@@ -5,7 +5,7 @@ if(POLICY CMP0091)
 endif()
 
 project(cpp2sky
-    VERSION 0.5.1
+    VERSION 0.6.1
     DESCRIPTION "Distributed tracing and monitor SDK in CPP for Apache SkyWalking APM"
     HOMEPAGE_URL "https://github.com/SkyAPM/cpp2sky"
 )
@@ -14,6 +14,7 @@ option(OVERRIDE_CXX_STANDARD_FLAGS "Force building with -std=c++11 even if the C
 option(SPDLOG_FETCHCONTENT         "Using spdlog FetchContent to build" ON)
 option(FMTLIB_FETCHCONTENT         "Using fmt FetchContent to build" ON)
 option(HTTPLIB_FETCHCONTENT        "Using httplib FetchContent to build" ON)
+option(GRPC_FETCHCONTENT           "Using gRPC FetchContent to build" ON)
 option(CPP2SKY_INSTALL             "Generate the install target." OFF)
 option(GENERATE_CPP2SKY_PKGCONFIG  "Generate and install pkg-config files for UNIX" OFF)
 
