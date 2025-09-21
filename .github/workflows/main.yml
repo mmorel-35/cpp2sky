@@ -8,13 +8,16 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   format:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Checkout clang-format
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           repository: Sarcasm/run-clang-format
           path: run-clang-format
@@ -26,7 +29,7 @@ jobs:
     steps:
       - run: |
           echo "/opt/llvm/bin" >> $GITHUB_PATH
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Run bazel test with GCC c++11
         run: |
           bazel test --test_output=all --cxxopt=-std=c++0x //...
@@ -40,13 +43,13 @@ jobs:
         run: |
           bazel test --test_output=all -c opt --config=clang --cxxopt=-std=c++17 //...
       - name: Checkout skywalking-data-collect-protocol
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           repository: apache/skywalking-data-collect-protocol
           ref: v9.1.0
           path: 3rdparty/skywalking-data-collect-protocol
       - name: Checkout grpc
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           repository: grpc/grpc
           ref: v1.46.6
@@ -75,7 +78,7 @@ jobs:
   e2e-test:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Prepare service container
         run: |
           docker compose -f test/e2e/docker/docker-compose.yml up -d
