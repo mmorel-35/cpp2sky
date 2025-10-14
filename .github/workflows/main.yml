@@ -26,7 +26,7 @@ jobs:
       - name: Run clang-format
         run: find ./ -iname "*.h" -o -iname "*.cc" | xargs ./run-clang-format/run-clang-format.py
 
-  unit-test:
+  bazel-test:
     runs-on: ubuntu-22.04
     steps:
       - run: |
@@ -61,12 +61,46 @@ jobs:
         run: |
           bazel test --config=ci --test_output=all -c opt --config=clang //...
 
+      - name: Install lcov and genhtml and link llvm
+        run: |
+          sudo apt update
+          sudo apt -y install lcov
+          sudo ln -s /usr/bin/llvm-profdata-11 /usr/bin/llvm-profdata
+          sudo ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov
+
+      - name: Run coverage test
+        run: |
+          ./coverage.sh
+
+  cmake-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
       - name: Checkout skywalking-data-collect-protocol
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           repository: apache/skywalking-data-collect-protocol
           ref: a9ee9b1b2b9b3e74a152ebb8b61aac50934ac9ed
           path: 3rdparty/skywalking-data-collect-protocol
+
+      # Cache gRPC build
+      - name: Cache gRPC build
+        uses: actions/cache@v3
+        with:
+          path: |
+            grpc/build
+            /usr/local/lib/libgrpc*
+            /usr/local/lib/libprotobuf*
+            /usr/local/lib/cmake/grpc
+            /usr/local/lib/cmake/protobuf
+            /usr/local/include/grpc*
+            /usr/local/include/google/protobuf
+            /usr/local/bin/grpc_*
+            /usr/local/bin/protoc
+          key: grpc-cmake-${{ runner.os }}-v1.74.1
+          restore-keys: |
+            grpc-cmake-${{ runner.os }}-
 
       - name: Checkout grpc
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -89,17 +123,6 @@ jobs:
         run: |
           sudo cmake -S . -B ./build
           sudo cmake --build ./build
-
-      - name: Install lcov and genhtml and link llvm
-        run: |
-          sudo apt update
-          sudo apt -y install lcov
-          sudo ln -s /usr/bin/llvm-profdata-11 /usr/bin/llvm-profdata
-          sudo ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov
-
-      - name: Run coverage test
-        run: |
-          ./coverage.sh
 
   e2e-test:
     runs-on: ubuntu-22.04
