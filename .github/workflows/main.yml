@@ -68,27 +68,14 @@ jobs:
           ref: a9ee9b1b2b9b3e74a152ebb8b61aac50934ac9ed
           path: 3rdparty/skywalking-data-collect-protocol
 
-      - name: Checkout grpc
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          repository: grpc/grpc
-          ref: v1.74.1
-          path: grpc
-          submodules: true
-
-      - name: Install cmake
+      - name: Install dependencies
         run: |
-          sudo apt update && sudo apt -y install cmake build-essential
-          
-      - name: Build grpc
-        run: |
-          sudo cmake -S ./grpc -B ./grpc/build
-          sudo cmake --build ./grpc/build --parallel 8 --target install
+          sudo apt update && sudo apt -y install cmake build-essential libgrpc++-dev libprotobuf-dev protobuf-compiler-grpc
           
       - name: Build main project
         run: |
-          sudo cmake -S . -B ./build
-          sudo cmake --build ./build
+          cmake -S . -B ./build
+          cmake --build ./build
 
       - name: Install lcov and genhtml and link llvm
         run: |
