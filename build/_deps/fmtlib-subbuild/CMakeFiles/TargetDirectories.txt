@@ -1,3 +1,0 @@
-/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/fmtlib-populate.dir
-/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/edit_cache.dir
-/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/rebuild_cache.dir
