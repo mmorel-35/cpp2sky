@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/fmtlib-populate"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/fmtlib-populate.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/CMakeFiles/fmtlib-populate-complete.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-build.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-configure.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-download.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-install.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-patch.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-test.rule"
+		},
+		{
+			"file" : "/home/runner/work/cpp2sky/cpp2sky/build/_deps/fmtlib-subbuild/fmtlib-populate-prefix/src/fmtlib-populate-stamp/fmtlib-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"fmtlib-populate"
+		],
+		"name" : "fmtlib-populate"
+	}
+}
