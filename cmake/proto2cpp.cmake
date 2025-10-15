@@ -98,6 +98,7 @@ add_library(proto_lib STATIC
     ${SERVICE_PROTO_HDRS}
 )
 target_include_directories(proto_lib PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/skywalking-protocol)
+target_link_libraries(proto_lib PUBLIC ${_PROTOBUF_LIBPROTOBUF})
 
 install(TARGETS proto_lib 
     RUNTIME  DESTINATION  ${CMAKE_INSTALL_BINDIR}
