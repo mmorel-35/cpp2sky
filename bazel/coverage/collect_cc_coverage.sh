@@ -90,9 +90,6 @@ function llvm_coverage_lcov() {
     fi
   done < "${COVERAGE_MANIFEST}"
 
-  # Set LLVM_COV to llvm-cov tool
-  LLVM_COV="${LLVM_COV:-llvm-cov}"
-  
   "${LLVM_COV}" export -instr-profile "${output_file}.data" -format=lcov \
       -ignore-filename-regex='.*external/.+' \
       -ignore-filename-regex='/tmp/.+' \
