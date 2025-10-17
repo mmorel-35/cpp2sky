@@ -4,6 +4,9 @@ set -e
 
 [[ -z "${SRCDIR}" ]] && SRCDIR="${PWD}"
 
+# Ensure we return to SRCDIR on exit
+trap 'cd "${SRCDIR}" 2>/dev/null || true' EXIT
+
 OUTPUT_DIR="${SRCDIR}/coverage_report"
 DATA_DIR="${SRCDIR}/bazel-testlogs/"
 PROJECT=$(basename "${SRCDIR}")
