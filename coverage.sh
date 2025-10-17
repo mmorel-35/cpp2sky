@@ -31,10 +31,19 @@ bazel coverage --config=ci ${COVERAGE_TARGETS} --test_output=errors
 rm -rf ${OUTPUT_DIR}
 mkdir -p ${OUTPUT_DIR}
 
-COVERAGE_DATA="${OUTPUT_DIR}/coverage.dat"
-cp "${SRCDIR}/bazel-out/_coverage/_coverage_report.dat" "${COVERAGE_DATA}"
+# Bazel outputs the coverage data to bazel-out/_coverage/_coverage_report.dat
+# Use the Bazel-provided path directly instead of copying
+COVERAGE_DATA="${SRCDIR}/bazel-out/_coverage/_coverage_report.dat"
+
+# Verify the coverage data file exists
+if [[ ! -f "${COVERAGE_DATA}" ]]; then
+  echo "ERROR: Coverage data file not found at ${COVERAGE_DATA}"
+  echo "Bazel coverage command may have failed to generate the report."
+  exit 1
+fi
 
 echo "Generating report..."
+echo "Using coverage data from: ${COVERAGE_DATA}"
 
 # With bzlmod, paths in the lcov file are relative to the execroot (bazel-<project>).
 # Use --prefix to tell genhtml where to find the source files.
