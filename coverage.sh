@@ -4,9 +4,6 @@ set -e
 
 [[ -z "${SRCDIR}" ]] && SRCDIR="${PWD}"
 
-# Ensure we return to SRCDIR on exit
-trap 'cd "${SRCDIR}" 2>/dev/null || true' EXIT
-
 OUTPUT_DIR="${SRCDIR}/coverage_report"
 DATA_DIR="${SRCDIR}/bazel-testlogs/"
 PROJECT=$(basename "${SRCDIR}")
@@ -39,10 +36,13 @@ cp "${SRCDIR}/bazel-out/_coverage/_coverage_report.dat" "${COVERAGE_DATA}"
 
 echo "Generating report..."
 
-# Change to the bazel workspace directory to resolve paths correctly
-cd "${SRCDIR}/bazel-${PROJECT}"
-genhtml --title ${PROJECT} --ignore-errors "source" ${COVERAGE_DATA} -o "${OUTPUT_DIR}"
-cd "${SRCDIR}"
+# With bzlmod, paths in the lcov file are relative to the execroot (bazel-<project>).
+# Use --prefix to tell genhtml where to find the source files.
+genhtml --title ${PROJECT} \
+  --ignore-errors "source" \
+  --prefix "${SRCDIR}/bazel-${PROJECT}" \
+  --output-directory "${OUTPUT_DIR}" \
+  "${COVERAGE_DATA}"
 tar -zcf ${PROJECT}_coverage.tar.gz ${OUTPUT_DIR}
 mv ${PROJECT}_coverage.tar.gz ${OUTPUT_DIR}
 
