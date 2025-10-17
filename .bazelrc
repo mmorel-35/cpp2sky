@@ -42,8 +42,6 @@ build:coverage --test_env=CC_CODE_COVERAGE_SCRIPT=bazel/coverage/collect_cc_cove
 build:coverage --test_env=TEST_WORKSPACE=cpp2sky
 build:coverage --strategy=TestRunner=local
 build:coverage --strategy=CoverageReport=local
-build:coverage --experimental_use_llvm_covmap
-build:coverage --collect_code_coverage
 build:coverage --test_tag_filters=-nocoverage
 
 try-import %workspace%/user.bazelrc
