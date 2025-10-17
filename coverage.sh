@@ -49,7 +49,7 @@ echo "Using coverage data from: ${COVERAGE_DATA}"
 # With bzlmod, paths in the lcov file are relative to the execroot.
 # Use --prefix to tell genhtml where to find the source files.
 genhtml --title ${PROJECT} \
-  --ignore-errors "source" \
+  --ignore-errors "source,unsupported" \
   --prefix "${BAZEL_EXEC_ROOT}" \
   --output-directory "${OUTPUT_DIR}" \
   "${COVERAGE_DATA}"
