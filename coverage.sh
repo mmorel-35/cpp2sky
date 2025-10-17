@@ -36,7 +36,10 @@ cp "${SRCDIR}/bazel-out/_coverage/_coverage_report.dat" "${COVERAGE_DATA}"
 
 echo "Generating report..."
 
+# Change to the bazel workspace directory to resolve paths correctly
+cd "${SRCDIR}/bazel-${PROJECT}"
 genhtml --title ${PROJECT} --ignore-errors "source" ${COVERAGE_DATA} -o "${OUTPUT_DIR}"
+cd "${SRCDIR}"
 tar -zcf ${PROJECT}_coverage.tar.gz ${OUTPUT_DIR}
 mv ${PROJECT}_coverage.tar.gz ${OUTPUT_DIR}
 
