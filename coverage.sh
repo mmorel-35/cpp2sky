@@ -31,8 +31,9 @@ bazel coverage --config=ci ${COVERAGE_TARGETS} --test_output=errors
 rm -rf ${OUTPUT_DIR}
 mkdir -p ${OUTPUT_DIR}
 
-# Use Bazel to get the output path dynamically
+# Use Bazel to get paths dynamically
 BAZEL_OUTPUT_PATH=$(bazel info output_path 2>/dev/null)
+BAZEL_EXEC_ROOT=$(bazel info execution_root 2>/dev/null)
 COVERAGE_DATA="${BAZEL_OUTPUT_PATH}/_coverage/_coverage_report.dat"
 
 # Verify the coverage data file exists
@@ -45,11 +46,11 @@ fi
 echo "Generating report..."
 echo "Using coverage data from: ${COVERAGE_DATA}"
 
-# With bzlmod, paths in the lcov file are relative to the execroot (bazel-<project>).
+# With bzlmod, paths in the lcov file are relative to the execroot.
 # Use --prefix to tell genhtml where to find the source files.
 genhtml --title ${PROJECT} \
   --ignore-errors "source" \
-  --prefix "${SRCDIR}/bazel-${PROJECT}" \
+  --prefix "${BAZEL_EXEC_ROOT}" \
   --output-directory "${OUTPUT_DIR}" \
   "${COVERAGE_DATA}"
 tar -zcf ${PROJECT}_coverage.tar.gz ${OUTPUT_DIR}
