@@ -79,13 +79,27 @@ function llvm_coverage_lcov() {
       "${COVERAGE_DIR}"/*.profraw
 
   local object_param=""
+  
+  # Auto-detect workspace name if TEST_WORKSPACE is not set
+  # In bzlmod mode, RUNFILES_DIR typically ends with /_main/...
+  # In workspace mode, it ends with /workspace_name/...
+  if [[ -z "${TEST_WORKSPACE}" && -n "${RUNFILES_DIR}" ]]; then
+    # Extract the workspace name from RUNFILES_DIR path
+    # Typical pattern: .../runfiles/<workspace_name>/...
+    TEST_WORKSPACE=$(echo "${RUNFILES_DIR}" | sed -n 's#.*/runfiles/\([^/]*\).*#\1#p')
+  fi
+  
   while read -r line; do
     if [[ ${line: -24} == "runtime_objects_list.txt" ]]; then
       while read -r line_runtime_object; do
           if [[ ${line_runtime_object} == *"absl"* ]]; then
             continue
           fi
-          object_param+=" -object ${RUNFILES_DIR}/${TEST_WORKSPACE}/${line_runtime_object}"
+          if [[ -n "${TEST_WORKSPACE}" ]]; then
+            object_param+=" -object ${RUNFILES_DIR}/${TEST_WORKSPACE}/${line_runtime_object}"
+          else
+            object_param+=" -object ${RUNFILES_DIR}/${line_runtime_object}"
+          fi
       done < "${line}"
     fi
   done < "${COVERAGE_MANIFEST}"
