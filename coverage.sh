@@ -31,9 +31,9 @@ bazel coverage --config=ci ${COVERAGE_TARGETS} --test_output=errors
 rm -rf ${OUTPUT_DIR}
 mkdir -p ${OUTPUT_DIR}
 
-# Bazel outputs the coverage data to bazel-out/_coverage/_coverage_report.dat
-# Use the Bazel-provided path directly instead of copying
-COVERAGE_DATA="${SRCDIR}/bazel-out/_coverage/_coverage_report.dat"
+# Use Bazel to get the output path dynamically
+BAZEL_OUTPUT_PATH=$(bazel info output_path 2>/dev/null)
+COVERAGE_DATA="${BAZEL_OUTPUT_PATH}/_coverage/_coverage_report.dat"
 
 # Verify the coverage data file exists
 if [[ ! -f "${COVERAGE_DATA}" ]]; then
