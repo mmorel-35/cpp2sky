@@ -16,3 +16,11 @@ updates:
           - "*"
     schedule:
       interval: monthly
+  - package-ecosystem: pip
+    directory: /test/e2e
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    schedule:
+      interval: monthly
