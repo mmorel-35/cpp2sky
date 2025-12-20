@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: bazel
+    directory: /
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    schedule:
+      interval: monthly
+  - package-ecosystem: github-actions
+    directory: /
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    schedule:
+      interval: monthly
