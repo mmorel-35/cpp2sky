@@ -1,5 +1,5 @@
 PyYAML==6.0.3
-requests==2.32.4
+requests==2.32.5
 apache-skywalking==0.8.0
-Flask==3.0.3
-Werkzeug==3.0.6
+Flask==3.1.2
+Werkzeug==3.1.4
