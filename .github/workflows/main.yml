@@ -19,10 +19,10 @@ jobs:
   format:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Checkout clang-format
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: Sarcasm/run-clang-format
           path: run-clang-format
@@ -35,7 +35,7 @@ jobs:
     steps:
       - run: echo "/opt/llvm/bin" >> $GITHUB_PATH
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       
       # Cache Bazel repository cache
       - name: Cache Bazel repository cache
@@ -79,7 +79,7 @@ jobs:
     steps:
       - run: echo "/opt/llvm/bin" >> $GITHUB_PATH
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Generate dependencies hash
         id: deps-hash
@@ -91,7 +91,7 @@ jobs:
           echo "Dependencies hash (first 8 chars): $DEPS_HASH"
 
       - name: Checkout skywalking-data-collect-protocol
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: apache/skywalking-data-collect-protocol
           ref: ${{ env.SKYWALKING_PROTOCOL_REF }}
@@ -117,7 +117,7 @@ jobs:
             grpc-cmake-${{ runner.os }}-
 
       - name: Checkout grpc
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: grpc/grpc
           ref: ${{ env.GRPC_VERSION }}
@@ -136,7 +136,7 @@ jobs:
   e2e-test:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Prepare service container
         run: |
