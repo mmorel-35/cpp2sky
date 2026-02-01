@@ -3,14 +3,14 @@ module(
     version = "0.6.1-dev",
 )
 
-bazel_dep(name = "abseil-cpp", version = "20250814.1", repo_name = "com_google_absl")
+bazel_dep(name = "abseil-cpp", version = "20260107.0", repo_name = "com_google_absl")
 bazel_dep(name = "fmt", version = "12.1.0", repo_name = "com_github_fmtlib_fmt")
-bazel_dep(name = "grpc", version = "1.76.0.bcr.1", repo_name = "com_github_grpc_grpc")
+bazel_dep(name = "grpc", version = "1.78.0-pre1", repo_name = "com_github_grpc_grpc")
 bazel_dep(name = "cpp-httplib", version = "0.22.0", repo_name = "com_github_httplib")
-bazel_dep(name = "protobuf", version = "33.2", repo_name = "com_google_protobuf")
+bazel_dep(name = "protobuf", version = "34.0-rc1", repo_name = "com_google_protobuf")
 bazel_dep(name = "rules_cc", version = "0.2.16")
 bazel_dep(name = "skywalking-data-collect-protocol", version = "10.3.0", repo_name = "skywalking_data_collect_protocol")
-bazel_dep(name = "spdlog", version = "1.16.0.bcr.2", repo_name = "com_github_gabime_spdlog")
+bazel_dep(name = "spdlog", version = "1.17.0", repo_name = "com_github_gabime_spdlog")
 
 bazel_dep(name = "googletest", version = "1.17.0.bcr.2", dev_dependency = True, repo_name = "com_google_googletest")
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
